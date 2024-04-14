@@ -1,6 +1,11 @@
+spec:
+  inputs:
+    stage:
+      default: 'semver'
+---
 release:semver:
   image: node:20
-  stage: semver
+  stage: $[[ inputs.stage ]]
   variables:
     GIT_SUBMODULE_STRATEGY: recursive
     GIT_SUBMODULE_DEPTH: 1

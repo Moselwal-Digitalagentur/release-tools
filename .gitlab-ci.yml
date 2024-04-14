@@ -1,8 +1,8 @@
 stages: [build, test, release]
 
-include:
-  - component: ${CI_SERVER_HOST}/${CI_PROJECT_PATH}/composer-package-gitlab-release@$CI_COMMIT_SHA
-  - component: ${CI_SERVER_HOST}/${CI_PROJECT_PATH}/semantic-release@$CI_COMMIT_SHA
+#include:
+#  - component: ${CI_SERVER_HOST}/${CI_PROJECT_PATH}/composer-package-gitlab-release@$CI_COMMIT_SHA
+#  - component: ${CI_SERVER_HOST}/${CI_PROJECT_PATH}/semantic-release@$CI_COMMIT_SHA
 
 
 create-release:
