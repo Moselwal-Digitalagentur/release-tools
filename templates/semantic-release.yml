@@ -1,7 +1,7 @@
 spec:
   inputs:
     stage:
-      default: 'semver'
+      default: 'release'
 ---
 release:semver:
   image: node:20
