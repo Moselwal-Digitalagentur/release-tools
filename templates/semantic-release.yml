@@ -4,7 +4,7 @@ spec:
       default: 'release'
 ---
 release:semver:
-  image: node:20-alpine3.19
+  image: ${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/node:20-alpine3.19
   stage: $[[ inputs.stage ]]
   variables:
     GIT_SUBMODULE_STRATEGY: recursive
