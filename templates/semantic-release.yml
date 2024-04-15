@@ -26,7 +26,7 @@ release:semver:
     - export GIT_COMMITTER_NAME=${GITLAB_USER_NAME}
     - export GIT_COMMITTER_EMAIL=${GITLAB_USER_EMAIL}
 
-    - npm ci @semantic-release/gitlab
-    - npm ci conventional-changelog-conventionalcommits
+    - npm install @semantic-release/gitlab
+    - npm install conventional-changelog-conventionalcommits
     - npx semantic-release
 
