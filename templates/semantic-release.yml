@@ -31,7 +31,7 @@ spec:
     image-config:
       # TODO: Refactor and use Semantic Versioning
       description: "The Docker image to use for the job. This should use semantic versioning."
-      default: "${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/node:22-alpine3.19"
+      default: "${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/node:20-alpine3.19"
     tags-config:
       description: "Tags used to select specific runners to execute the job."
       type: array
@@ -66,6 +66,7 @@ release:semver:
     - export GIT_COMMITTER_EMAIL=${GITLAB_USER_EMAIL}
 
     - npm install @semantic-release/gitlab
-    - npm install conventional-changelog-conventionalcommits
+    - npm install conventional-changelog-conventionalcommits@7.0.2
+    - npm install conventional-changelog-writer@7.0.1
     - npx semantic-release
     - $[[ inputs.additional-script-end ]]
