@@ -1,13 +1,51 @@
+#  Moselwal Digitalagentur Release Tools
+#    Copyright (C) 2024  Moselwal Digitalagentur GmbH, Kai Ole Hartwig <support@moselwal.de>
+#
+#  This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 spec:
   inputs:
     stage:
       default: 'release'
+      description: "The stage in the CI/CD pipeline where this job will run.  "
+    rules-config:
+      description: "Configuration rules that determine when the job should run."
+      type: array
+      default:
+        - if: $CI_COMMIT_TAG != null
+          when: always
+    image-config:
+      # TODO: Refactor and use Semantic Versioning
+      description: "The Docker image to use for the job. This should use semantic versioning."
+      default: "registry.moselwal.io/devops/images/php/$PHP_VERSION/ci:latest"
+    tags-config:
+      description: "Tags used to select specific runners to execute the job."
+      type: array
+      default: []
+    additional-script-begin:
+      description: "Add additional Script at the beginning of the Script."
+      default: ''
+    additional-script-end:
+      description: "Add additional Script at the end of the Script."
+      default: ''
 ---
 release:package:
-  image: registry.moselwal.io/devops/images/php/$PHP_VERSION/ci:latest
   stage: $[[ inputs.stage ]]
-  rules:
-    - if: $CI_COMMIT_TAG != null
-      when: always
+  rules: $[[ inputs.rules-config ]]
+  image: $[[ inputs.image-config | expand_vars ]]
+  tags: $[[ inputs.tags-config ]]
   script:
+    - $[[ inputs.additional-script-begin ]]
     - 'curl --header "Job-Token: $CI_JOB_TOKEN" --data tag=$CI_COMMIT_TAG "${CI_API_V4_URL}/projects/$CI_PROJECT_ID/packages/composer"'
+    - $[[ inputs.additional-script-end ]]
