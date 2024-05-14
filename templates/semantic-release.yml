@@ -28,6 +28,8 @@ spec:
         - if: $CI_PIPELINE_SOURCE == "schedule"
           when: never
         - if: $CI_COMMIT_REF_NAME != null && $CI_COMMIT_TAG == null && $CI_PIPELINE_SOURCE != "schedule"
+        - if: '$CI_MERGE_REQUEST_IID'
+          when: never
     image-config:
       # TODO: Refactor and use Semantic Versioning
       description: "The Docker image to use for the job. This should use semantic versioning."
@@ -70,3 +72,24 @@ release:semver:
     - npm install conventional-changelog-writer@7.0.1
     - npx semantic-release
     - $[[ inputs.additional-script-end ]]
+
+release:semver:preview:
+  stage: $[[ inputs.stage ]]
+  rules:
+    - if: '$CI_MERGE_REQUEST_IID'
+  image: $[[ inputs.image-config | expand_vars ]]
+  script:
+    - npm install @semantic-release/gitlab
+    - npm install conventional-changelog-conventionalcommits@7.0.2
+    - npm install conventional-changelog-writer@7.0.1
+    - npm install @semantic-release/exec
+    - npx semantic-release --dry-run | tee semantic-release-output.txt
+    - cat semantic-release-output.txt | grep "Release Note" -A 100
+    - export RELEASE_NOTES=$(cat semantic-release-output.txt | grep "Release Note" -A 100 | sed 's/^/ /')
+    - export NEXT_VERSION=$(cat semantic-release-output.txt | grep "The next release version is" | awk '{print $NF}')
+    - |
+      curl -X POST \
+      -H "Content-Type: application/json" \
+      -H "PRIVATE-TOKEN: $GITLAB_PRIVATE_TOKEN" \
+      -d "{ \"body\": \"**Release Preview:**\n**Version:** ${NEXT_VERSION}\n**Release Notes:**\n ${RELEASE_NOTES}\" }" \
+      "${CI_API_V4_URL}/projects/$CI_PROJECT_ID/merge_requests/$CI_MERGE_REQUEST_IID/notes"
