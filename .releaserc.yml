@@ -41,8 +41,6 @@ plugins:
     - assets:
         - CHANGELOG.md
       message: "chore(release): ${nextRelease.version} \n\n${nextRelease.notes}"
-  - - "@semantic-release/exec"
-    - prepareCmd: 'echo "NEXT_VERSION=${nextRelease.version}" > .next_version'
   - - "@semantic-release/gitlab"
     - gitlabUrl: https://gitlab.moselwal.io
 branches:
