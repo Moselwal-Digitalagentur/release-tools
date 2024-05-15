@@ -1,3 +1,10 @@
+## [1.2.4](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.2.3...1.2.4) (2024-05-15)
+
+
+### :bug: Fixes
+
+* update release tools ([5a1c43a](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/5a1c43a5b85ed728e57272f4e6e8a3059f920a3c)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+
 ## [1.2.3](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.2.2...1.2.3) (2024-05-15)
 
 
