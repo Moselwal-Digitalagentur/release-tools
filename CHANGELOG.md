@@ -1,3 +1,10 @@
+## [1.3.2](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.3.1...1.3.2) (2024-05-15)
+
+
+### :repeat: Chores
+
+* test if new release config will work without hardcoded url ([b358f60](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/b358f60adb3ef0e8cf60b5a785bcc09720738f61)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+
 ## [1.3.1](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.3.0...1.3.1) (2024-05-15)
 
 
