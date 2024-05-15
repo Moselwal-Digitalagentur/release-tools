@@ -1,3 +1,10 @@
+## [1.3.7](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.3.6...1.3.7) (2024-05-15)
+
+
+### :bug: Fixes
+
+* add rules to skip job if CHANGELOG has changed ([598dbbd](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/598dbbd29dd896697a03737e9d2500b878e0ab72)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+
 ## [1.3.6](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.3.5...1.3.6) (2024-05-15)
 
 
