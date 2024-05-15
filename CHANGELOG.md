@@ -1,3 +1,10 @@
+## [1.3.1](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.3.0...1.3.1) (2024-05-15)
+
+
+### :bug: Fixes
+
+* flexible project path ([41d804a](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/41d804a01e447a2ff246d854a8171c337f69bd14)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+
 ## [1.3.0](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.2.4...1.3.0) (2024-05-15)
 
 
