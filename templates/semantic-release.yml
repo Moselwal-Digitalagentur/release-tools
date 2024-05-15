@@ -79,7 +79,7 @@ release:semver:preview:
     - if: $CI_MERGE_REQUEST_IID
   image: $[[ inputs.image-config | expand_vars ]]
   before_script:
-    - apk add --no-cache git openssh gnupg jq sed
+    - apk add --no-cache git openssh gnupg jq sed curl
   script:
     - npm install @semantic-release/gitlab
     - npm install conventional-changelog-conventionalcommits@7.0.2

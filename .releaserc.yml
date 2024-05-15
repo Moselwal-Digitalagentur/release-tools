@@ -35,9 +35,16 @@ plugins:
           - type: 'chore'
             section: ':repeat: Chores'
             hidden: false
+  - - "@semantic-release/changelog"
+    - changelogFile: CHANGELOG.md
+  - - "@semantic-release/git"
+    - assets:
+        - CHANGELOG.md
+      message: "chore(release): ${nextRelease.version} \n\n${nextRelease.notes}"
+  - - "@semantic-release/exec"
+    - prepareCmd: 'echo "NEXT_VERSION=${nextRelease.version}" > .next_version'
   - - "@semantic-release/gitlab"
     - gitlabUrl: https://gitlab.moselwal.io
 branches:
   - name: main
-tagFormat:
-  ${version}
+tagFormat: '${version}'
