@@ -42,7 +42,6 @@ plugins:
         - CHANGELOG.md
       message: "chore(release): ${nextRelease.version} \n\n${nextRelease.notes}"
   - - "@semantic-release/gitlab"
-    - gitlabUrl: https://gitlab.moselwal.io
 branches:
   - name: main
 tagFormat: '${version}'
