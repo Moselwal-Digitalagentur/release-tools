@@ -1,3 +1,10 @@
+## [1.3.6](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.3.5...1.3.6) (2024-05-15)
+
+
+### :bug: Fixes
+
+* remove skip ci for CHANGELOG ([882ce43](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/882ce437220a802ddad653ec8d6cdca4eda17c48)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+
 ## [1.3.5](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.3.4...1.3.5) (2024-05-15)
 
 
