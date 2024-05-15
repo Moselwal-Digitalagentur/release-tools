@@ -90,7 +90,7 @@ release:semver:preview:
     - npm install @semantic-release/changelog
     - npm install @semantic-release/exec
     - npm install @semantic-release/git
-    - npx semantic-release --dry-run | tee semantic-release-output.txt
+    - npx semantic-release --dry-run --no-ci --debug | tee semantic-release-output.txt
     - cat semantic-release-output.txt | grep "Release Note" -A 100
     - export RELEASE_NOTES=$(cat semantic-release-output.txt | grep "Release Note" -A 100 | sed 's/^/ /')
     - export NEXT_VERSION=$(cat semantic-release-output.txt | grep "The next release version is" | awk '{print $NF}')
