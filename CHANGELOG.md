@@ -1,3 +1,10 @@
+## [1.3.0](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.2.4...1.3.0) (2024-05-15)
+
+
+### :sparkles: Features
+
+* disable semver in mr ([eb769d8](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/eb769d81ddd5a9f211b3804d7e00367c10fd5f53)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+
 ## [1.2.4](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.2.3...1.2.4) (2024-05-15)
 
 
