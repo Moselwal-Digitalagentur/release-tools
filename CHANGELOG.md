@@ -1,3 +1,15 @@
+## [1.4.0](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.3.7...1.4.0) (2024-05-17)
+
+
+### :sparkles: Features
+
+* do not release on ci changes ([b0cee8a](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/b0cee8a16771e2a3dbaa8368fa1062f7655db19e))
+
+
+### :bug: Fixes
+
+* typo in composer component ([451afb6](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/451afb62f8f32fd350b9e7c763bbe1fc4e8faa91)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+
 ## [1.3.7](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.3.6...1.3.7) (2024-05-15)
 
 
