@@ -1,3 +1,10 @@
+## [1.6.1](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.6.0...1.6.1) (2024-05-20)
+
+
+### :bug: Fixes
+
+* ter relase inputs ([4db707c](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/4db707c6eebd019c60a380da93ab50f6e0638af1)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+
 ## [1.6.0](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.5.0...1.6.0) (2024-05-20)
 
 
