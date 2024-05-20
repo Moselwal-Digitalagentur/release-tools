@@ -1,3 +1,10 @@
+## [1.6.0](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.5.0...1.6.0) (2024-05-20)
+
+
+### :sparkles: Features
+
+* add relase ter job for publishing TYPO3 Extensions into TER ([18d3859](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/18d38596494eb2fd5825edfa24932caa93c09179)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+
 ## [1.5.0](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.4.0...1.5.0) (2024-05-20)
 
 
