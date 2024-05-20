@@ -19,6 +19,34 @@ You should have received a copy of the GNU General Public License along with thi
 
 ## Components
 
+### Component: release:cleanup
+This job is responsible for cleanup the project by deleting RC, Alpha, and Beta tags and their associated releases after an stable release is published.
+
+This job is executed when an MR is made from release to the default branch, e.g. main.
+In our workflow, stable releases are created on the branch release.
+
+#### Inputs
+
+| **Input**                   | **Description**                                                                                     | **Example**                           | **Default Value**                                                      |
+|-----------------------------|-----------------------------------------------------------------------------------------------------|---------------------------------------|------------------------------------------------------------------------|
+| `stage`                     | (Optional) The stage in the CI/CD pipeline where this job will run.                                 | `release`                             | `release`                                                              |
+| `rules-config`              | (Optional) Configuration rules that determine when the job should run.                             | See below for default rules           | See below for default rules                                            |
+| `image-config`              | (Optional) The Docker image to use for the job. This should use semantic versioning.               | `registry.example.com/alpine:3.14`    | `${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/alpine:3.19`                |
+| `tags-config`               | (Optional) Tags used to select specific runners to execute the job.                                | `docker`, `release`                   | `[]`                                                                   |
+| `additional-script-begin`   | (Optional) Add additional script at the beginning of the script.                                   | `echo "Start cleanup"`                | `''`                                                                   |
+| `additional-script-end`     | (Optional) Add additional script at the end of the script.                                         | `echo "End cleanup"`                  | `''`                                                                   |
+
+##### Default `rules-config`
+```yaml
+- if: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME == "release" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == CI_DEFAULT_BRANCH
+  when: always
+```  
+
+- Stage: $[[ inputs.stage ]]
+- Rules: $[[ inputs.rules-config ]]
+- Image: $[[ inputs.image-config | expand_vars ]]
+- Tags: $[[ inputs.tags-config ]]
+
 ### Component: release:package
 This job is responsible for packaging and releasing the project when a new tag is created.
 

@@ -23,22 +23,11 @@ spec:
       description: "Configuration rules that determine when the job should run."
       type: array
       default:
-        - if: $CI_COMMIT_TAG
-          when: never
-        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-          when: never
-        - if: $CI_PIPELINE_SOURCE == "schedule"
-          when: never
-        - if: $CI_COMMIT_REF_PROTECTED == "true"
-          changes:
-            - CHANGELOG.md
-            - .gitlab-ci.yml
-          when: never
-        - if: $CI_COMMIT_REF_NAME != null && $CI_COMMIT_TAG == null && $CI_PIPELINE_SOURCE != "schedule"
+        - if: $CI_MERGE_REQUEST_SOURCE_BRANCH_NAME == "release" && $CI_MERGE_REQUEST_TARGET_BRANCH_NAME == CI_DEFAULT_BRANCH
+          when: always
     image-config:
-      # TODO: Refactor and use Semantic Versioning
       description: "The Docker image to use for the job. This should use semantic versioning."
-      default: "${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/node:20-alpine3.19"
+      default: "${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/alpine:3.19"
     tags-config:
       description: "Tags used to select specific runners to execute the job."
       type: array
@@ -50,33 +39,28 @@ spec:
       description: "Add additional Script at the end of the Script."
       default: ''
 ---
-release:semver:
+release:cleanup:
   stage: $[[ inputs.stage ]]
   rules: $[[ inputs.rules-config ]]
   image: $[[ inputs.image-config | expand_vars ]]
   tags: $[[ inputs.tags-config ]]
-  variables:
-    GIT_SUBMODULE_STRATEGY: recursive
-    GIT_SUBMODULE_DEPTH: 1
   before_script:
-    - apk add --no-cache git openssh gnupg jq
+    - apk add --no-cache curl jq
   script:
     - $[[ inputs.additional-script-begin ]]
-    - git config --local user.email ${GITLAB_USER_EMAIL}
-    - git config --local user.name "${GITLAB_USER_NAME}"
-    #- gpg --batch --yes --import ${GPG_SEM_REL}
-    #- git config --global user.signingkey ${GPG_ID_SEM_REL}
-    #- git config --local commit.gpgsign true
-    - export GIT_AUTHOR_NAME=${GITLAB_USER_NAME}
-    - export GIT_AUTHOR_EMAIL=${GITLAB_USER_EMAIL}
-    - export GIT_COMMITTER_NAME=${GITLAB_USER_NAME}
-    - export GIT_COMMITTER_EMAIL=${GITLAB_USER_EMAIL}
+    - echo "Deleting RC tags and releases using GitLab API..."
+    - |
+      # Fetch all tags
+      TAGS=$(curl --silent --header "PRIVATE-TOKEN: $GL_TOKEN" "$CI_API_V4_URL/projects/$CI_PROJECT_ID/repository/tags" | jq -r '.[] | select(.name | test("-rc.")) | .name')
+      for TAG in $TAGS; do
+        echo "Deleting tag and release for: $TAG"
+        # Delete the tag using the API
+        curl --request DELETE --header "PRIVATE-TOKEN: $GL_TOKEN" "$CI_API_V4_URL/projects/$CI_PROJECT_ID/repository/tags/$TAG"
 
-    - npm install @semantic-release/gitlab
-    - npm install conventional-changelog-conventionalcommits@7.0.2
-    - npm install conventional-changelog-writer@7.0.1
-    - npm install @semantic-release/changelog
-    - npm install @semantic-release/exec
-    - npm install @semantic-release/git
-    - npx semantic-release
+        # Delete the release associated with the tag using the API
+        RELEASE_ID=$(curl --silent --header "JOB-TOKEN: $CI_JOB_TOKEN" "$CI_API_V4_URL/projects/$CI_PROJECT_ID/releases" | jq -r ".[] | select(.tag_name == \"$TAG\") | .id")
+        if [ -n "$RELEASE_ID" ]; then
+          curl --request DELETE --header "JOB-TOKEN: $CI_JOB_TOKEN" "$CI_API_V4_URL/projects/$CI_PROJECT_ID/releases/$RELEASE_ID"
+        fi
+      done
     - $[[ inputs.additional-script-end ]]
