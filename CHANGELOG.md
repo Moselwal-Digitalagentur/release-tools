@@ -1,3 +1,10 @@
+## [1.5.0](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.4.0...1.5.0) (2024-05-20)
+
+
+### :sparkles: Features
+
+* add cleanup job for tags ([950d0aa](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/950d0aa3974ea6e163a42465b5638d2fc9e7b0a0)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+
 ## [1.4.0](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.3.7...1.4.0) (2024-05-17)
 
 
