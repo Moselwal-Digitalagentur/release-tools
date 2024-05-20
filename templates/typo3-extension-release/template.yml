@@ -30,6 +30,9 @@ spec:
           when: never
         - if: $CI_COMMIT_TAG && $CI_COMMIT_BRANCH == "release"
           when: always
+    needs-config:
+      description: "Configure the jobs that needed to run this job."
+      default: []
     image-config:
       description: "The Docker image to use for the job. This should use semantic versioning."
       default: "${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/composer:2"
@@ -47,10 +50,11 @@ spec:
       description: "TER API Token, for publishing an Extension e.g. use CI Variable like TYPO3_API_TOKEN"
 ---
 release:ter:
-  stage: release
-  image: composer:2
-  only:
-    - tags
+  stage: $[[ inputs.stage ]]
+  rules: $[[ inputs.rules-config ]]
+  image: $[[ inputs.image-config | expand_vars ]]
+  tags: $[[ inputs.tags-config ]]
+  needs: $[[ inputs.needs-config ]]
   before_script:
     - composer global require typo3/tailor
   script:
