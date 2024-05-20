@@ -42,10 +42,10 @@ In our workflow, stable releases are created on the branch release.
   when: always
 ```  
 
-- Stage: $[[ inputs.stage ]]
-- Rules: $[[ inputs.rules-config ]]
-- Image: $[[ inputs.image-config | expand_vars ]]
-- Tags: $[[ inputs.tags-config ]]
+- **Stage**: $[[ inputs.stage ]]
+- **Rules**: $[[ inputs.rules-config ]]
+- **Image**: $[[ inputs.image-config | expand_vars ]]
+- **Tags**: $[[ inputs.tags-config ]]
 
 ### Component: release:package
 This job is responsible for packaging and releasing the project when a new tag is created.
@@ -104,6 +104,37 @@ This job is responsible for handling the semantic versioning release process dur
 #### Variables
 - `GIT_SUBMODULE_STRATEGY`: `recursive`
 - `GIT_SUBMODULE_DEPTH`: `1`
+
+### Component: release:ter
+This job is responsible for releasing the project to the TYPO3 Extension Repository (TER) when a new tag is created.
+
+#### Inputs
+
+| **Input**                   | **Description**                                                                                     | **Example**                         | **Default Value**                                                      |
+|-----------------------------|-----------------------------------------------------------------------------------------------------|-------------------------------------|------------------------------------------------------------------------|
+| `stage`                     | (Optional) The stage in the CI/CD pipeline where this job will run.                                 | `release`                           | `release`                                                              |
+| `rules-config`              | (Optional) Configuration rules that determine when the job should run.                             | See below for default rules         | See below for default rules                                            |
+| `image-config`              | (Optional) The Docker image to use for the job. This should use semantic versioning.               | `registry.example.com/composer:2`   | `${CI_DEPENDENCY_PROXY_GROUP_IMAGE_PREFIX}/composer:2`                 |
+| `tags-config`               | (Optional) Tags used to select specific runners to execute the job.                                | `docker`, `release`                 | `[]`                                                                   |
+| `additional-script-begin`   | (Optional) Add additional script at the beginning of the script.                                   | `echo "Start release"`              | `''`                                                                   |
+| `additional-script-end`     | (Optional) Add additional script at the end of the script.                                         | `echo "End release"`                | `''`                                                                   |
+| `typo3-api-token`           | (Required) TER API Token for publishing an extension.                                              | `${TYPO3_API_TOKEN}`                | `''`                                                                   |
+
+##### Default `rules-config`
+```yaml
+- if: $CI_COMMIT_REF_PROTECTED == "true"
+  changes:
+    - CHANGELOG.md
+    - .gitlab-ci.yml
+  when: never
+- if: $CI_COMMIT_TAG && $CI_COMMIT_BRANCH == "release"
+  when: always
+```
+
+- **Stage**: $[[ inputs.stage ]]
+- **Rules**: $[[ inputs.rules-config ]]
+- **Image**: $[[ inputs.image-config | expand_vars ]]
+- **Tags**: $[[ inputs.tags-config ]]
 
 ## Contributing
 Please read about CI/CD components and best practices at: https://docs.gitlab.com/ee/ci/components    
