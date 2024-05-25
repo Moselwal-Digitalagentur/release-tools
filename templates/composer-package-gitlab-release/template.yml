@@ -25,6 +25,7 @@ spec:
       default:
         - if: $CI_COMMIT_TAG != null
           when: always
+        - when: never
     image-config:
       # TODO: Refactor and use Semantic Versioning
       description: "The Docker image to use for the job. This should use semantic versioning."
