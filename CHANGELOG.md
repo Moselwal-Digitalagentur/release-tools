@@ -1,3 +1,16 @@
+## [1.7.0](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.6.1...1.7.0) (2024-05-26)
+
+
+### :sparkles: Features
+
+* update rules. ([bf706e5](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/bf706e5505cc09f8effbb8ae7de7ad1ae3bbdd16)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+* update rules. ([ce719c5](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/ce719c5bb7dbc07693c8af268c59c76f1d3b6457)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+
+
+### :bug: Fixes
+
+* invalid expression syntax ([ed2747c](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/ed2747ca78767e743779c4e4bec1801a40f875fb)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+
 ## [1.6.1](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.6.0...1.6.1) (2024-05-20)
 
 
