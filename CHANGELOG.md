@@ -1,3 +1,10 @@
+## [1.7.1](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.7.0...1.7.1) (2024-05-29)
+
+
+### :bug: Fixes
+
+* add release job on protected branches even if an MR is open ([b9821c1](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/b9821c1c617d53078c68877f63f71ee12cec8311)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+
 ## [1.7.0](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.6.1...1.7.0) (2024-05-26)
 
 
