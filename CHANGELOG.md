@@ -1,3 +1,10 @@
+## [1.7.2](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.7.1...1.7.2) (2024-06-02)
+
+### :repeat: Chores
+
+* debug semantical-release type error ([494340d](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/494340dc65a9d7eb6e1091df6f0d55394fa6b75a)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+* update release jobs, debug type error ([1654b3e](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/1654b3eaedffa04e3c39244d00d4a0a98b89418a)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+
 ## [1.7.1](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.7.0...1.7.1) (2024-05-29)
 
 
