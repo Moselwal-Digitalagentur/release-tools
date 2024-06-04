@@ -1,3 +1,9 @@
+## [1.7.3](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.7.2...1.7.3) (2024-06-04)
+
+### :bug: Fixes
+
+* update release rules ([595d35c](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/595d35cd44e4e37e39eaf5d5aaaf2713bdf09df1)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+
 ## [1.7.2](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.7.1...1.7.2) (2024-06-02)
 
 ### :repeat: Chores
