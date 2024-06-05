@@ -1,3 +1,9 @@
+## [1.8.0](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.7.3...1.8.0) (2024-06-05)
+
+### :sparkles: Features
+
+* Changes to the .pre-commit-config.yaml do not trigger a release job ([5385736](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/commit/5385736be7e417e9bda5f4dccd3c4cb9de4d3fd5)), closes [no-issue#0](https://gitlab.moselwal.io/devops/no-issue/issues/0)
+
 ## [1.7.3](https://gitlab.moselwal.io/devops/ci-cd-components/release-tools/compare/1.7.2...1.7.3) (2024-06-04)
 
 ### :bug: Fixes
